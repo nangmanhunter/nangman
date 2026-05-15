@@ -46,8 +46,9 @@ watch(hashKey, async (newValue) => {
     />
   
     <div class="mt-4 font-mono break-all p-3 bg-gray-50 dark:bg-gray-800 rounded">
-      {{ hashValue }}
+      <ClipboardBox :code="hashValue" />
     </div>
+
   </UContainer>
 
   
