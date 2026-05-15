@@ -1,7 +1,14 @@
 <script setup>
-// const myHash = ref('');
+
+
+const hashKey = ref('')
+const hashValue = ref('')
 
 async function generateSHA256(text) {
+
+
+
+
   // 1. 문자열을 바이트 배열로 변환
   const encoder = new TextEncoder();
   const data = encoder.encode(text);
@@ -16,11 +23,32 @@ async function generateSHA256(text) {
   return hashHex;
 }
 
-// 사용 예시
-const myHash = await generateSHA256("NangMan");
-console.log(myHash); 
+
+
+hashValue.value= await generateSHA256("NangMan");
+
+
+// // 2. 입력값(inputText)이 바뀔 때마다 자동으로 해시를 계산하는 watch 설정
+watch(hashKey, async (newValue) => {
+  hashValue.value = await generateSHA256(newValue)
+})
 </script>
 <template>
+  <UContainer class="py-8 max-w-3xl mx-auto">
+    
+    <UInput 
+      v-model="hashKey"
+      class="w-full"
+      loading
+      loading-icon="i-lucide-at-sign" 
+      placeholder="Enter hash text" 
+      size="md" 
+    />
+  
+    <div class="mt-4 font-mono break-all p-3 bg-gray-50 dark:bg-gray-800 rounded">
+      {{ hashValue }}
+    </div>
+  </UContainer>
 
-    {{ myHash }}
+  
 </template>
