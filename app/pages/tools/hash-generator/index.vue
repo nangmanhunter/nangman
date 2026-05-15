@@ -1,7 +1,7 @@
 <script setup>
 
 
-const hashKey = ref('')
+const hashKey = ref('💻input-hash-origin-ex.abc123')
 const hashValue = ref('')
 
 async function generateSHA256(text) {
@@ -25,7 +25,7 @@ async function generateSHA256(text) {
 
 
 
-hashValue.value= await generateSHA256("NangMan");
+hashValue.value= await generateSHA256(hashKey.value);
 
 
 // // 2. 입력값(inputText)이 바뀔 때마다 자동으로 해시를 계산하는 watch 설정
