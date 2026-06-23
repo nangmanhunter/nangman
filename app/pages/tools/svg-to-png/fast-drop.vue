@@ -1,6 +1,6 @@
 <template>
   <div class="dropzone-container">
-    <h2>SVG 파일을 아래 박스에 던지세요!</h2>
+    <h2>SVG 파일들을 아래 박스에 한방에 던지세요!</h2>
 
     <div
       class="dropzone"
@@ -11,7 +11,7 @@
     >
       <div class="drop-message">
         <span class="icon">📥</span>
-        <p>PNG로 바꿀 SVG 파일을 여기에 <br>드래그 앤 드롭 하세요!</p>
+        <p>여러 개의 SVG 파일을 한 번에 <br>드래그 앤 드롭 하세요!</p>
       </div>
     </div>
   </div>
@@ -20,57 +20,48 @@
 <script setup>
 import { ref } from 'vue'
 
-const isDragging = ref(false) // 사용자가 파일을 끌어올리고 있는지 확인하는 상태 변수
+const isDragging = ref(false)
 
-// 1. 파일을 드롭존 위로 끌어왔을 때
 const onDragOver = () => {
   isDragging.value = true
 }
 
-// 2. 파일을 드롭존 밖으로 나갔을 때
 const onDragLeave = () => {
   isDragging.value = false
 }
 
-// 3. 파일을 드롭존에 떨어뜨렸을 때 (핵심 로직 실행)
+// 1. 파일을 드롭했을 때 처리하는 부분 (업그레이드)
 const onDrop = (event) => {
-  isDragging.value = false // 드래그 상태 초기화
+  isDragging.value = false
 
-  // 드롭된 파일 가져오기
-  const file = event.dataTransfer?.files[0]
+  // 던져진 파일 '목록' 전체를 가져옵니다.
+  const files = event.dataTransfer?.files
+  if (!files || files.length === 0) return
 
-  // SVG 파일인지 확인 (아니면 즉시 종료)
-  if (!file || file.type !== 'image/svg+xml') {
-    alert('SVG 파일만 지원합니다!')
-    return
-  }
-
-  // 4. 즉시 변환 및 다운로드 실행 (이전 handleInstantConvert 로직과 동일)
-  convertAndDownload(file)
+  // 복수 파일 처리를 위해 배열로 변환 후, 하나씩 변환 함수로 던집니다.
+  Array.from(files).forEach((file) => {
+    // SVG 파일이 맞는지만 체크하고 통과 시 바로 변환
+    if (file.type === 'image/svg+xml' || file.name.endsWith('.svg')) {
+      convertAndDownload(file)
+    } else {
+      console.warn(`${file.name}은 SVG 파일이 아니라서 제외되었습니다.`)
+    }
+  })
 }
 
-// ---------------------------------------------------------
-// 백그라운드 변환 및 즉시 다운로드 유틸리티 함수
-// ---------------------------------------------------------
+// 2. 개별 파일을 받아 백그라운드에서 구워내는 변환 함수
 const convertAndDownload = (file) => {
-  // 다운로드 파일명 준비 (test.svg -> test.png)
   const saveName = file.name.replace(/\.svg$/i, '.png')
-
   const reader = new FileReader()
+
   reader.onload = (e) => {
     const svgText = e.target.result
-
-    // 백그라운드에서 DOM 파싱 (화면에 안 그림)
     const parser = new DOMParser()
     const doc = parser.parseFromString(svgText, 'image/svg+xml')
     const svgElement = doc.querySelector('svg')
 
-    if (!svgElement) {
-      alert('올바른 SVG 파일이 아닙니다.')
-      return
-    }
+    if (!svgElement) return
 
-    // SVG 크기 감지 (고화질을 위해 없으면 기본값 500)
     const width = parseInt(svgElement.getAttribute('width')) || svgElement.viewBox?.baseVal?.width || 500
     const height = parseInt(svgElement.getAttribute('height')) || svgElement.viewBox?.baseVal?.height || 500
 
@@ -83,7 +74,6 @@ const convertAndDownload = (file) => {
     image.src = blobURL
 
     image.onload = () => {
-      // 캔버스 생성 및 드로잉
       const canvas = document.createElement('canvas')
       canvas.width = width
       canvas.height = height
@@ -93,7 +83,6 @@ const convertAndDownload = (file) => {
         context.drawImage(image, 0, 0, width, height)
         const pngDataUrl = canvas.toDataURL('image/png')
 
-        // 즉시 다운로드 트리거
         const downloadLink = document.createElement('a')
         downloadLink.href = pngDataUrl
         downloadLink.download = saveName
@@ -102,7 +91,6 @@ const convertAndDownload = (file) => {
         document.body.removeChild(downloadLink)
       }
 
-      // 메모리 정리
       URL.revokeObjectURL(blobURL)
     }
   }
@@ -137,10 +125,9 @@ h2 {
   transition: border-color 0.2s, background-color 0.2s;
 }
 
-/* 파일을 끌어올리고 있을 때의 스타일 (dragging 클래스 추가 시) */
 .dropzone.dragging {
-  border-color: #ff5722;
-  background-color: #fff3e0;
+  border-color: #007bff;
+  background-color: #e3f2fd;
 }
 
 .drop-message {
@@ -155,6 +142,6 @@ h2 {
 }
 
 .dropzone.dragging .drop-message {
-  color: #e64a19;
+  color: #007bff;
 }
 </style>
