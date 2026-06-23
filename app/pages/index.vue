@@ -5,7 +5,8 @@
         nangman.org
       </h1>
       <p class="brand-subtitle">
-        세상을 조금 더 아름답게 만드는 조각들
+        Pieces that make the world a little more beautiful
+        세상을 조금 더 아름답게 만드는 조각들<br>
       </p>
     </header>
 
@@ -41,7 +42,8 @@ const services = ref([
     name: 'emoji.nangman.org',
     url: 'https://emoji.nangman.org',
     emoji: '✨',
-    description: '감정을 담은 이모지 도구'
+    description: 'An emoji tool that captures emotion'
+    // description: '감정을 담은 이모지 도구'
   }
   // {
   //   name: 'stats.nangman.org',
