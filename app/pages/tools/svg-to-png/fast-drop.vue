@@ -1,61 +1,68 @@
 <template>
-  <div class="dropzone-container">
-    <h2>SVG 파일들을 아래 박스에 한방에 던지세요!</h2>
+  <div class="fast-converter-container">
+    <h2>{{ uiText.title }}</h2>
 
-    <div
-      class="dropzone"
-      :class="{ dragging: isDragging }"
-      @dragover.prevent="onDragOver"
-      @dragleave.prevent="onDragLeave"
-      @drop.prevent="onDrop"
+    <label
+      for="fast-svg-file"
+      class="instant-btn"
     >
-      <div class="drop-message">
-        <span class="icon">📥</span>
-        <p>여러 개의 SVG 파일을 한 번에 <br>드래그 앤 드롭 하세요!</p>
-      </div>
-    </div>
+      {{ uiText.button }}
+    </label>
+    <input
+      id="fast-svg-file"
+      type="file"
+      accept=".svg"
+      multiple
+      @change="handleInstantConvert"
+    >
   </div>
 </template>
 
 <script setup>
-import { ref } from 'vue'
+import { ref, onMounted } from 'vue'
 
-const isDragging = ref(false)
+// 💡 1. 기본 언어 셋을 글로벌 표준인 영어(en)로 기본 설정
+const uiText = ref({
+  title: 'Convert SVG to PNG Instantly (Multiple Files)',
+  button: 'Select SVG Files'
+})
 
-const onDragOver = () => {
-  isDragging.value = true
-}
+// 💡 2. 브라우저 환경에서 한국어(ko) 환경을 감지하면 한글로 교체
+onMounted(() => {
+  if (typeof window !== 'undefined') {
+    const userLanguage = navigator.language || navigator.userLanguage
 
-const onDragLeave = () => {
-  isDragging.value = false
-}
+    if (userLanguage.startsWith('ko')) {
+      uiText.value = {
+        title: 'SVG 파일 선택 즉시 PNG로 저장 (다중 선택 가능!)',
+        button: 'SVG 파일들 선택하기 (여러 개 한방에!)'
+      }
+    }
+  }
+})
 
-// 1. 파일을 드롭했을 때 처리하는 부분 (업그레이드)
-const onDrop = (event) => {
-  isDragging.value = false
-
-  // 던져진 파일 '목록' 전체를 가져옵니다.
-  const files = event.dataTransfer?.files
+const handleInstantConvert = (event) => {
+  const files = event.target.files
   if (!files || files.length === 0) return
 
-  // 복수 파일 처리를 위해 배열로 변환 후, 하나씩 변환 함수로 던집니다.
   Array.from(files).forEach((file) => {
-    // SVG 파일이 맞는지만 체크하고 통과 시 바로 변환
     if (file.type === 'image/svg+xml' || file.name.endsWith('.svg')) {
-      convertAndDownload(file)
+      convertAndDownloadSingleFile(file)
     } else {
-      console.warn(`${file.name}은 SVG 파일이 아니라서 제외되었습니다.`)
+      console.warn(`${file.name}은 SVG 파일이 아닙니다.`)
     }
   })
+
+  event.target.value = ''
 }
 
-// 2. 개별 파일을 받아 백그라운드에서 구워내는 변환 함수
-const convertAndDownload = (file) => {
+const convertAndDownloadSingleFile = (file) => {
   const saveName = file.name.replace(/\.svg$/i, '.png')
   const reader = new FileReader()
 
   reader.onload = (e) => {
     const svgText = e.target.result
+
     const parser = new DOMParser()
     const doc = parser.parseFromString(svgText, 'image/svg+xml')
     const svgElement = doc.querySelector('svg')
@@ -100,48 +107,27 @@ const convertAndDownload = (file) => {
 </script>
 
 <style scoped>
-.dropzone-container {
+.fast-converter-container {
   font-family: sans-serif;
   padding: 40px;
   text-align: center;
 }
-
-h2 {
-  color: #333;
-  margin-bottom: 20px;
+input[type="file"] {
+  display: none;
 }
-
-.dropzone {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 400px;
-  height: 250px;
-  margin: 0 auto;
-  border: 4px dashed #ced4da;
-  border-radius: 20px;
-  background-color: #f8f9fa;
-  cursor: pointer;
-  transition: border-color 0.2s, background-color 0.2s;
-}
-
-.dropzone.dragging {
-  border-color: #007bff;
-  background-color: #e3f2fd;
-}
-
-.drop-message {
-  color: #6c757d;
+.instant-btn {
+  display: inline-block;
+  padding: 15px 30px;
+  background: #ff5722;
+  color: white;
   font-weight: bold;
+  font-size: 18px;
+  border-radius: 8px;
+  cursor: pointer;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+  transition: background 0.2s;
 }
-
-.drop-message .icon {
-  font-size: 60px;
-  display: block;
-  margin-bottom: 10px;
-}
-
-.dropzone.dragging .drop-message {
-  color: #007bff;
+.instant-btn:hover {
+  background: #e64a19;
 }
 </style>

@@ -39,9 +39,7 @@ Image변환
 ㆍSVG to PNG 또는 SVG2PNG
 
 
-ㆍSvgToPng
-ㆍInSvgToPng
-ㆍin-svg-to-png
+
 
 
 
@@ -75,3 +73,4 @@ Image변환
 
 - 그럴려면.
 - path 이게 상당히깔끔해야함.-이것계속연마ㄱㄱ.
+
