@@ -1,3 +1,6 @@
+<!--
+- cascadeimg.nangman.org/svgtopng
+-->
 <template>
   <div class="fast-converter-container">
     <h2>{{ uiText.title }}</h2>
