@@ -1,23 +1,22 @@
-<!--
-- bounceimg.nangman.org/svgtopng
--->
 <template>
-  <div class="fast-converter-container">
-    <h2>{{ uiText.title }}</h2>
+  <div class="full-screen-wrapper">
+    <div class="fast-converter-container">
+      <h2>{{ uiText.title }}</h2>
 
-    <label
-      for="fast-svg-file"
-      class="instant-btn"
-    >
-      {{ uiText.button }}
-    </label>
-    <input
-      id="fast-svg-file"
-      type="file"
-      accept=".svg"
-      multiple
-      @change="handleInstantConvert"
-    >
+      <label
+        for="fast-svg-file"
+        class="instant-btn"
+      >
+        {{ uiText.button }}
+      </label>
+      <input
+        id="fast-svg-file"
+        type="file"
+        accept=".svg"
+        multiple
+        @change="handleInstantConvert"
+      >
+    </div>
   </div>
 </template>
 
@@ -26,8 +25,8 @@ import { ref, onMounted } from 'vue'
 
 // 💡 1. 기본 언어 셋을 글로벌 표준인 영어(en)로 기본 설정
 const uiText = ref({
-  title: 'Convert SVG to PNG Instantly (Multiple Files)',
-  button: 'Select SVG Files'
+  title: 'Convert SVG to PNG Instantly',
+  button: '👆 Select SVG Files'
 })
 
 // 💡 2. 브라우저 환경에서 한국어(ko) 환경을 감지하면 한글로 교체
@@ -38,7 +37,7 @@ onMounted(() => {
     if (userLanguage.startsWith('ko')) {
       uiText.value = {
         title: 'SVG 파일 선택 즉시 PNG로 저장 (다중 선택 가능!)',
-        button: 'SVG 파일들 선택하기 (여러 개 한방에!)'
+        button: '👆 SVG 파일들 선택하기 (여러 개 한방에!)'
       }
     }
   }
@@ -110,27 +109,55 @@ const convertAndDownloadSingleFile = (file) => {
 </script>
 
 <style scoped>
+/* 💡 핵심 스타일 추가: 화면 전체 높이를 확보하고 내용물을 세로/가로 정중앙 배치 */
+.full-screen-wrapper {
+  display: flex;
+  justify-content: center; /* 가로 정중앙 */
+  align-items: center;     /* 세로 정중앙 */
+  min-height: 100vh;       /* 브라우저 화면 높이 100% 꽉 채우기 */
+  width: 100%;
+  box-sizing: border-box;
+  background-color: #f3f4f6; /* 주황색 버튼이 아주 선명하게 돋보이는 모던한 연회색 배경 */
+}
+
 .fast-converter-container {
   font-family: sans-serif;
-  padding: 40px;
   text-align: center;
+  padding: 20px;
 }
+
+h2 {
+  color: #222;
+  font-size: 24px;
+  font-weight: 700;
+  margin-bottom: 24px;
+  letter-spacing: -0.5px;
+}
+
 input[type="file"] {
   display: none;
 }
+
 .instant-btn {
   display: inline-block;
-  padding: 15px 30px;
+  padding: 16px 36px;
   background: #ff5722;
   color: white;
   font-weight: bold;
   font-size: 18px;
-  border-radius: 8px;
+  border-radius: 12px; /* 버튼 모서리를 살짝 더 트렌디하고 둥글게 변경 */
   cursor: pointer;
-  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-  transition: background 0.2s;
+  box-shadow: 0 10px 20px rgba(255, 87, 34, 0.2); /* 버튼과 같은 톤의 화사한 그림자 효과 */
+  transition: background 0.2s, transform 0.2s, box-shadow 0.2s;
 }
+
 .instant-btn:hover {
   background: #e64a19;
+  transform: translateY(-2px); /* 마우스를 올리면 팅기듯 살짝 위로 올라오는 힙한 모션 효과 */
+  box-shadow: 0 12px 24px rgba(255, 87, 34, 0.3);
+}
+
+.instant-btn:active {
+  transform: translateY(0);
 }
 </style>

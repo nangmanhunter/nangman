@@ -44,6 +44,26 @@
 - BulkImageConverter: 많은 양의 이미지를 변환한다는 의미를 강조합니다.
 - 마케팅 전략: 어떤 이미지를 사용자에게 전달하고 싶은지에 따라 이름을 선택할 수 있습니다. 예를 들어, 빠르고 간편하다는 점을 강조하고 싶다면 'FastImageConverter'와 같은 이름을 선택할 수 있습니다.
 
+- img.nangman.org/cascade
+- image.nangman.org/cascade
+- image.nangman.org/convert/cascade
+- imageconvert.nangman.org/cascade
+- imageconvert.nangman.org/cascade/svgtopng
+- image.nangman.org/convert/cascade/svgtopng
+- image.nangman.org/converter/cascade
+- imgconvert.nangman.org/cascade
+- img.nangman.org/fast/upload
+- imgconvert.nangman.org/fast/upload
+- imgconverter.nangman.org/cascade
+- imgconverter.nangman.org/fast/upload
+
+- `imageconvert.nangman.org/` vs. `imageconverter.nangman.org/`
+- `imageconvert.nangman.org/`<<`imageconverter.nangman.org/`-정석
+- `imageconvert.nangman.org/`>>`imageconverter.nangman.org/`-축약
+- `imageconvert.nangman.org/`>>`imageconverter.nangman.org/`-정석+축약
+- `imageconvert.nangman.org/`>>`imageconverter.nangman.org/`-정석+축약.`tableconvert.com`
+
+
 
 
 ##
