@@ -19,7 +19,8 @@ export default defineNuxtConfig({
 
   routeRules: {
     '/': { prerender: true },
-    '/sitemap.xml': { prerender: true }
+    '/sitemap.xml': { prerender: true },
+    '/tools/hash-generator': { ssr: false }
   },
 
   compatibilityDate: '2025-01-15',
