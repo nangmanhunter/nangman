@@ -1,34 +1,75 @@
 <template>
-  <div class="main-container">
-    <header class="header">
-      <h1 class="brand-title">
+  <div class="main-container min-h-screen w-full bg-zinc-950 text-zinc-100 flex flex-col items-center justify-between p-6 md:p-12 font-sans relative overflow-hidden select-none">
+    <div class="absolute w-[600px] h-[600px] bg-indigo-500/5 rounded-full blur-[160px] top-[-10%] left-[-10%] pointer-events-none" />
+    <div class="absolute w-[600px] h-[600px] bg-purple-500/5 rounded-full blur-[160px] bottom-[-10%] right-[-10%] pointer-events-none" />
+    <div class="absolute w-[400px] h-[400px] bg-emerald-500/3 rounded-full blur-[140px] top-[40%] left-[30%] pointer-events-none" />
+
+    <header class="header text-center mt-12 md:mt-20 z-10 animate-fade-in">
+      <h1 class="brand-title text-5xl md:text-7xl font-black tracking-tighter bg-clip-text text-transparent bg-gradient-to-b from-white via-zinc-200 to-zinc-500 drop-shadow-xl mb-4">
         nangman.org
+        <img
+          src="/favicon.ico"
+          alt="Nangman Favicon"
+          class="w-10 h-10 md:w-14 md:h-14 object-contain inline-block select-none pointer-events-none drop-shadow-[0_0_15px_rgba(255,255,255,0.3)]"
+        >
       </h1>
-      <p class="brand-subtitle">
-        Pieces that make the world a little more beautiful
-        세상을 조금 더 아름답게 만드는 조각들<br>
+      <p class="brand-subtitle text-sm md:text-base font-light text-zinc-400 tracking-wide leading-relaxed max-w-md mx-auto">
+        Pieces that make the world a little more beautiful<br>
+        <span class="text-xs text-zinc-500 mt-1 block">세상을 조금 더 아름답게 만드는 조각들</span>
       </p>
     </header>
 
-    <main class="grid-container">
+    <main class="grid-container w-full max-w-5xl my-16 z-10">
       <a
         v-for="(service, index) in services"
         :key="index"
         :href="service.url"
-        class="grid-card"
-        target="_blank"
+        class="group grid-card relative bg-zinc-900/30 backdrop-blur-md border border-zinc-800/60 p-8 rounded-3xl flex flex-col justify-between overflow-hidden transition-all duration-500 ease-out hover:-translate-y-2"
+        :style="{ '--shadow-color': service.glowColor || 'rgba(99, 102, 241, 0.15)' }"
       >
-        <div class="card-content">
-          <span class="card-emoji">{{ service.emoji }}</span>
-          <h2 class="card-title">{{ service.name }}</h2>
-          <p class="card-desc">{{ service.description }}</p>
+        <div
+          class="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none bg-gradient-to-br"
+          :class="service.bgGradient || 'from-indigo-500/10 to-transparent'"
+        />
+
+        <div class="flex justify-between items-start mb-10">
+          <span
+            class="card-emoji text-3xl p-3 bg-zinc-800/40 rounded-2xl border border-zinc-700/30 group-hover:scale-110 group-hover:bg-zinc-800/80 transition-all duration-500"
+            :class="service.textGlow"
+          >
+            {{ service.emoji }}
+          </span>
+          <div class="card-arrow text-zinc-600 group-hover:text-white transform group-hover:translate-x-1 group-hover:-translate-y-1 transition-all duration-300">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              class="w-5 h-5"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+              stroke-width="2.5"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M14 5l7 7m0 0l-7 7m7-7H3"
+              />
+            </svg>
+          </div>
         </div>
-        <div class="card-arrow">→</div>
+
+        <div class="relative z-10">
+          <h2 class="card-title text-xl font-bold text-zinc-200 tracking-tight mb-2 group-hover:text-white transition-colors">
+            {{ service.name }}
+          </h2>
+          <p class="card-desc text-sm text-zinc-500 font-light leading-relaxed group-hover:text-zinc-300 transition-colors">
+            {{ service.description }}
+          </p>
+        </div>
       </a>
     </main>
 
-    <footer class="footer">
-      <p>© 2026 nangman.org. All rights reserved.</p>
+    <footer class="footer mb-8 text-zinc-600 text-xs tracking-widest z-10">
+      <p>© 2026 NANGMAN. ALL RIGHTS RESERVED.</p>
     </footer>
   </div>
 </template>
@@ -36,180 +77,81 @@
 <script setup>
 import { ref } from 'vue'
 
-// 새로운 서비스가 생기면 이 배열에 한 줄만 추가하면 자동으로 블록이 늘어납니다.
+// 💡 각 서비스마다 고유의 '빛깔(Glow)'과 그라데이션을 부여해서 조각들의 개성을 살립니다.
 const services = ref([
   {
     name: 'emoji.nangman.org',
-    url: 'https://emoji.nangman.org',
+    url: 'https://emoji.nangman.org/',
     emoji: '✨',
-    description: 'An emoji tool that captures emotion'
-    // description: '감정을 담은 이모지 도구'
+    description: 'An emoji tool that captures emotion. 감정을 담아내는 이모지 오디세이.',
+    glowColor: 'rgba(168, 85, 247, 0.2)', // purple-500 기반 네온
+    bgGradient: 'from-purple-500/10 to-transparent',
+    textGlow: 'group-hover:shadow-[0_0_20px_rgba(168,85,247,0.4)]'
+  },
+  {
+    name: 'svgtopng.nangman.org',
+    url: 'https://image.nangman.org/', // 나중에 실제 주소로 변경
+    emoji: '⚡',
+    description: 'The Gateway of SVG to PNG. 두 가지 매력의 문을 열고 마주하는 초고속 변환 허브.',
+    // 🔥 핵심: 인디고(보라)와 에메랄드(녹색)가 반반 섞여 호버했을 때 오로라처럼 빛나는 네온 효과
+    glowColor: 'rgba(99, 102, 241, 0.25)',
+    bgGradient: 'from-indigo-500/10 via-emerald-500/5 to-transparent',
+    textGlow: 'group-hover:shadow-[0_0_25px_rgba(52,211,153,0.3)]'
+  },
+  {
+    name: 'bounceimg.nangman.org',
+    url: 'https://image.nangman.org/bounce/svgtopng', // 나중에 실제 주소로 변경
+    emoji: '🔮',
+    description: 'Dynamic SVG to PNG Converter. 튕기듯 역동적인 포맷 컨버터.',
+    glowColor: 'rgba(99, 102, 241, 0.2)', // indigo-500 기반 네온
+    bgGradient: 'from-indigo-500/10 to-transparent',
+    textGlow: 'group-hover:shadow-[0_0_20px_rgba(99,102,241,0.4)]'
+  },
+  {
+    name: 'cascadeimg.nangman.org',
+    url: 'https://image.nangman.org/cascade/svgtopng', // 나중에 실제 주소로 변경
+    emoji: '🌊',
+    description: 'Instant SVG to PNG Stream. 폭포처럼 정갈하고 빠른 변환기.',
+    glowColor: 'rgba(16, 185, 129, 0.15)', // emerald-500 기반 네온
+    bgGradient: 'from-emerald-500/10 to-transparent',
+    textGlow: 'group-hover:shadow-[0_0_20px_rgba(16,185,129,0.4)]'
   }
-  // {
-  //   name: 'stats.nangman.org',
-  //   url: '#',
-  //   emoji: '📊',
-  //   description: '정밀하고 깔끔한 통계 계산기'
-  // },
-  // {
-  //   name: 'wedding.nangman.org',
-  //   url: '#',
-  //   emoji: '💌',
-  //   description: '마음을 전하는 모바일 청첩장'
-  // },
-  // {
-  //   name: 'board.nangman.org',
-  //   url: '#',
-  //   emoji: '🏛️',
-  //   description: '생각을 나누는 메인 광장'
-  // }
 ])
 </script>
 
 <style scoped>
-/* 전체 페이지 초기화 및 폰트 설정 */
-:global(body) {
-  margin: 0;
-  padding: 0;
-  font-family:
-    -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue",
-    Arial, sans-serif;
-  background-color: #f9fafb;
-  /* 눈이 편안한 미색 배경 */
-  color: #111827;
-}
-
-/* 전체 컨테이너: 화면 중앙 정렬 */
-.main-container {
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  padding: 3rem 1.5rem;
-  box-sizing: border-box;
-}
-
-/* 헤더 스타일 */
-.header {
-  text-align: center;
-  margin-bottom: 4rem;
-}
-
-.brand-title {
-  font-size: 3rem;
-  font-weight: 800;
-  margin: 0;
-  letter-spacing: -0.05em;
-}
-
-.brand-subtitle {
-  font-size: 1.125rem;
-  color: #6b7280;
-  font-weight: 300;
-  margin-top: 0.75rem;
-}
-
-/* 반응형 3x3 그리드 레이아웃 */
+/* 반응형 그리드 시스템: 서비스가 늘어남에 따라 자연스럽게 정돈됨 */
 .grid-container {
   display: grid;
   grid-template-cols: repeat(1, minmax(0, 1fr));
-  /* 모바일 기본 1열 */
   gap: 1.5rem;
-  width: 100%;
-  max-width: 56rem;
-  /* 4xl 해상도 제한 */
+  padding: 0 1rem;
 }
 
-/* 태블릿 (화면 너비 640px 이상) 일 때 2열 */
 @media (min-width: 640px) {
   .grid-container {
     grid-template-cols: repeat(2, minmax(0, 1fr));
   }
 }
 
-/* PC (화면 너비 1024px 이상) 일 때 3열 */
 @media (min-width: 1024px) {
   .grid-container {
     grid-template-cols: repeat(3, minmax(0, 1fr));
   }
 }
 
-/* 카드 개별 스타일 */
-.grid-card {
-  background-color: #ffffff;
-  padding: 1.5rem;
-  border-radius: 1rem;
-  border: 1px solid #f3f4f6;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
-  text-decoration: none;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  min-height: 160px;
-  box-sizing: border-box;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-/* 마우스를 올렸을 때(Hover) 부드럽게 위로 들리는 낭만적인 효과 */
+/* 카드별 동적 네온 그림자 효과 추가 */
 .grid-card:hover {
-  transform: translateY(-4px);
-  box-shadow:
-    0 10px 15px -3px rgba(0, 0, 0, 0.05),
-    0 4px 6px -2px rgba(0, 0, 0, 0.05);
-  border-color: #e5e7eb;
+  border-color: rgba(255, 255, 255, 0.15);
+  box-shadow: 0 15px 30px -5px var(--shadow-color);
 }
 
-.card-emoji {
-  font-size: 1.875rem;
-  display: block;
-  margin-bottom: 0.75rem;
-  opacity: 0.8;
-  transition: opacity 0.3s;
+/* 상단 타이틀 페이드인 효과 */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
 }
-
-.grid-card:hover .card-emoji {
-  opacity: 1;
-}
-
-.card-title {
-  font-size: 1.125rem;
-  font-weight: 600;
-  margin: 0;
-  color: #1f2937;
-  transition: color 0.3s;
-}
-
-/* 마우스 올리면 타이틀 색상이 은은한 블루로 변경 */
-.grid-card:hover .card-title {
-  color: #4f46e5;
-}
-
-.card-desc {
-  font-size: 0.875rem;
-  color: #9ca3af;
-  font-weight: 300;
-  margin: 0.25rem 0 0 0;
-}
-
-/* 화살표 스타일 */
-.card-arrow {
-  text-align: right;
-  margin-top: 1rem;
-  color: #d1d5db;
-  transition: color 0.3s;
-}
-
-.grid-card:hover .card-arrow {
-  color: #4f46e5;
-}
-
-/* 푸터 스타일 */
-.footer {
-  margin-top: auto;
-  padding-top: 5rem;
-  color: #9ca3af;
-  font-size: 0.875rem;
-  text-align: center;
+.animate-fade-in {
+  animation: fadeIn 1s ease-out forwards;
 }
 </style>
