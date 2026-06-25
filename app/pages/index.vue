@@ -90,7 +90,7 @@ const services = ref([
   },
   {
     name: 'svgtopng.nangman.org',
-    url: 'https://image.nangman.org/', // 나중에 실제 주소로 변경
+    url: 'https://image.nangman.org/svgtopng', // 나중에 실제 주소로 변경
     emoji: '⚡',
     description: 'The Gateway of SVG to PNG. 두 가지 매력의 문을 열고 마주하는 초고속 변환 허브.',
     // 🔥 핵심: 인디고(보라)와 에메랄드(녹색)가 반반 섞여 호버했을 때 오로라처럼 빛나는 네온 효과
