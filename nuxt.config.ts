@@ -6,7 +6,7 @@ export default defineNuxtConfig({
   modules: [
     '@nuxt/eslint',
     '@nuxt/ui',
-    '@nuxtjs/sitemap'
+    '@nuxtjs/sitemap',
   ],
 
   devtools: {
@@ -23,8 +23,15 @@ export default defineNuxtConfig({
 
   routeRules: {
     '/': { prerender: true },
-    '/sitemap.xml': { prerender: true }
   },
+  nitro: {
+    prerender: {
+      crawlLinks: true,      // 사이트 내 링크들을 자동으로 크롤링해서
+      routes: ['/sitemap.xml'] // sitemap.xml을 static 파일로 미리 구워냅니다.
+    }
+  },
+
+
 
   compatibilityDate: '2025-01-15',
 
