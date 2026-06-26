@@ -90,7 +90,7 @@ const services = ref([
   },
   {
     name: 'svgtopng.nangman.org',
-    url: 'https://image.nangman.org/svgtopng', // 나중에 실제 주소로 변경
+    url: 'https://images.nangman.org/svgtopng', // 나중에 실제 주소로 변경
     emoji: '⚡',
     description: 'The Gateway of SVG to PNG. 두 가지 매력의 문을 열고 마주하는 초고속 변환 허브.',
     // 🔥 핵심: 인디고(보라)와 에메랄드(녹색)가 반반 섞여 호버했을 때 오로라처럼 빛나는 네온 효과
@@ -100,7 +100,7 @@ const services = ref([
   },
   {
     name: 'bounceimg.nangman.org',
-    url: 'https://image.nangman.org/bounce/svgtopng', // 나중에 실제 주소로 변경
+    url: 'https://images.nangman.org/bounce/svgtopng', // 나중에 실제 주소로 변경
     emoji: '🔮',
     description: 'Dynamic SVG to PNG Converter. 튕기듯 역동적인 포맷 컨버터.',
     glowColor: 'rgba(99, 102, 241, 0.2)', // indigo-500 기반 네온
@@ -109,13 +109,22 @@ const services = ref([
   },
   {
     name: 'cascadeimg.nangman.org',
-    url: 'https://image.nangman.org/cascade/svgtopng', // 나중에 실제 주소로 변경
+    url: 'https://images.nangman.org/cascade/svgtopng', // 나중에 실제 주소로 변경
     emoji: '🌊',
     description: 'Instant SVG to PNG Stream. 폭포처럼 정갈하고 빠른 변환기.',
     glowColor: 'rgba(16, 185, 129, 0.15)', // emerald-500 기반 네온
     bgGradient: 'from-emerald-500/10 to-transparent',
     textGlow: 'group-hover:shadow-[0_0_20px_rgba(16,185,129,0.4)]'
-  }
+  },
+  {
+    name: 'ascii.nangman.org',
+    url: 'https://images.nangman.org/cascade/svgtopng', // 나중에 실제 주소로 변경
+    emoji: '🌊',
+    description: 'Instant SVG to PNG Stream. 폭포처럼 정갈하고 빠른 변환기.',
+    glowColor: 'rgba(16, 185, 129, 0.15)', // emerald-500 기반 네온
+    bgGradient: 'from-emerald-500/10 to-transparent',
+    textGlow: 'group-hover:shadow-[0_0_20px_rgba(16,185,129,0.4)]'
+  },
 ])
 </script>
 
