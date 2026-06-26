@@ -142,7 +142,7 @@ const services = ref([
   },
   {
     name: 'ascii.nangman.org',
-    url: 'https://images.nangman.org/cascade/ascii',
+    url: 'https://images.nangman.org/ascii',
     emoji: '⊤', // 또는 🎨
     description:
       'Instant Image to ASCII Art. 텍스트로 그려내는 낭만적인 한 장.',
