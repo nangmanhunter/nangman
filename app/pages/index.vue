@@ -160,6 +160,16 @@ const services = ref([
     bgGradient: 'from-emerald-500/10 to-transparent',
     textGlow: 'group-hover:shadow-[0_0_20px_rgba(16,185,129,0.4)]',
   },
+  {
+    name: 'bases.nangman.org',
+    url: 'https://bases.nangman.org/',
+    emoji: '🔢', 
+    description:
+      'Base your logic with romance. 진법 변환부터 수학·통계 연산까지.',
+    glowColor: 'rgba(16, 185, 129, 0.15)',
+    bgGradient: 'from-emerald-500/10 to-transparent',
+    textGlow: 'group-hover:shadow-[0_0_20px_rgba(16,185,129,0.4)]',
+  },
 ]);
 </script>
 
