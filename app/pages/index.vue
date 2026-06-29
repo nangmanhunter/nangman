@@ -113,7 +113,7 @@ const services = ref([
   },
   {
     name: 'svgtopng.nangman.org',
-    url: 'https://images.nangman.org/svgtopng', // 나중에 실제 주소로 변경
+    url: 'https://images.nangman.org/svgtopng',
     emoji: '⚡',
     description:
       'The Gateway of SVG to PNG. 두 가지 매력의 문을 열고 마주하는 초고속 변환 허브.',
@@ -146,6 +146,16 @@ const services = ref([
     emoji: '⊤', // 또는 🎨
     description:
       'Instant Image to ASCII Art. 텍스트로 그려내는 낭만적인 한 장.',
+    glowColor: 'rgba(16, 185, 129, 0.15)',
+    bgGradient: 'from-emerald-500/10 to-transparent',
+    textGlow: 'group-hover:shadow-[0_0_20px_rgba(16,185,129,0.4)]',
+  },
+  {
+    name: 'colors.nangman.org',
+    url: 'https://colors.nangman.org/',
+    emoji: '🎨', 
+    description:
+      'Beautiful Color Palette & Tools. 당신의 프로젝트에 낭만적인 색채를.',
     glowColor: 'rgba(16, 185, 129, 0.15)',
     bgGradient: 'from-emerald-500/10 to-transparent',
     textGlow: 'group-hover:shadow-[0_0_20px_rgba(16,185,129,0.4)]',
