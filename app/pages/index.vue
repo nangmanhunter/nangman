@@ -124,7 +124,7 @@ const services = ref([
   },
   {
     name: 'bounceimg.nangman.org',
-    url: 'https://images.nangman.org/bounce/svgtopng', // 나중에 실제 주소로 변경
+    url: 'https://images.nangman.org/svgtopng/bounce/', // 나중에 실제 주소로 변경
     emoji: '🔮',
     description: 'Dynamic SVG to PNG Converter. 튕기듯 역동적인 포맷 컨버터.',
     glowColor: 'rgba(99, 102, 241, 0.2)', // indigo-500 기반 네온
@@ -133,7 +133,7 @@ const services = ref([
   },
   {
     name: 'cascadeimg.nangman.org',
-    url: 'https://images.nangman.org/cascade/svgtopng', // 나중에 실제 주소로 변경
+    url: 'https://images.nangman.org/svgtopng/cascade', // 나중에 실제 주소로 변경
     emoji: '🌊',
     description: 'Instant SVG to PNG Stream. 폭포처럼 정갈하고 빠른 변환기.',
     glowColor: 'rgba(16, 185, 129, 0.15)', // emerald-500 기반 네온
