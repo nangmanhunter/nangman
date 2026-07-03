@@ -112,6 +112,16 @@ const services = ref([
     textGlow: 'group-hover:shadow-[0_0_20px_rgba(168,85,247,0.4)]',
   },
   {
+    name: 'images.nangman.org',
+    url: 'https://images.nangman.org/',
+    emoji: '🖼️',
+    description:
+      'Image tools',
+    glowColor: 'rgba(99, 102, 241, 0.25)',
+    bgGradient: 'from-indigo-500/10 via-emerald-500/5 to-transparent',
+    textGlow: 'group-hover:shadow-[0_0_25px_rgba(52,211,153,0.3)]',
+  },
+  {
     name: 'svgtopng.nangman.org',
     url: 'https://images.nangman.org/svgtopng',
     emoji: '⚡',
