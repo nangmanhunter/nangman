@@ -1,0 +1,32 @@
+Terms of Service
+
+Article 1 (Purpose)
+These Terms of Service (the "Terms") govern the conditions, procedures, rights, duties, and responsibilities between nangman.develop (the "Developer") and the user regarding the use of mobile applications and related services provided by the Developer (the "Service").
+
+Article 2 (Definitions)
+1. "Service" refers to the mobile applications and all associated features provided by the Developer.
+2. "User" refers to any individual or entity accessing or using the Service in accordance with these Terms.
+
+Article 3 (Effect and Modification of Terms)
+1. These Terms become effective upon publication within the Service or on the designated webpage.
+2. The Developer reserves the right to modify these Terms at any time within the scope of applicable laws and regulations. Continued use of the Service after changes are published constitutes acceptance of the updated Terms.
+
+Article 4 (Provision and Modification of Service)
+1. The Developer provides the Service to support various features and user capabilities.
+2. The Service may display third-party advertisements hosted by providers such as Google AdMob.
+3. The Developer may modify, suspend, or terminate all or part of the Service as necessary for operational or technical reasons without prior notice.
+
+Article 5 (Disclaimer of Warranties and Limitation of Liability)
+1. The Service is provided on an "AS IS" and "AS AVAILABLE" basis. The Developer makes no warranties regarding the accuracy, completeness, reliability, or error-free operation of the Service.
+2. The Developer shall not be liable for any service interruptions, failures, or data loss caused by acts of God, force majeure, or reasons beyond the Developer's reasonable control.
+3. Users utilize the Service at their own discretion and risk.
+
+Article 6 (Privacy Protection)
+The Developer prioritizes the protection of user privacy. The collection, use, and management of personal data are governed separately by the Privacy Policy.
+
+Article 7 (Contact Information)
+For any questions, feedback, or inquiries regarding the Service or these Terms, please contact:
+- Developer: nangman.develop
+- Email: nangman.develop@gmail.com
+
+Effective Date: November 5, 2026
